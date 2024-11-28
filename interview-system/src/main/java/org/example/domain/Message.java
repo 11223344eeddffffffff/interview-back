@@ -1,49 +1,23 @@
 package org.example.domain;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.Date;
+
+@Data
+@NoArgsConstructor
 public class Message implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String content;
-    private long senderId;
-    private long receiverId;
-    private long interviewId;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date sendAt;
+    private String senderName;
 
-    // 默认构造函数
-    public Message() {}
-
-    // Getters and Setters
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public long getSenderId() {
-        return senderId;
-    }
-
-    public void setSenderId(long senderId) {
-        this.senderId = senderId;
-    }
-
-    public long getReceiverId() {
-        return receiverId;
-    }
-
-    public void setReceiverId(long receiverId) {
-        this.receiverId = receiverId;
-    }
-
-    public long getInterviewId() {
-        return interviewId;
-    }
-
-    public void setInterviewId(long interviewId) {
-        this.interviewId = interviewId;
-    }
 }
 
