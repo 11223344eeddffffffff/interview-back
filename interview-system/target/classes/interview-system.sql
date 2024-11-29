@@ -2,9 +2,9 @@ CREATE DATABASE IF NOT EXISTS `interview_system` DEFAULT CHARACTER SET utf8;
 
 USE `interview_system`;
 
-DROP TABLE IF EXISTS `hr`;
+DROP TABLE IF EXISTS `interviewer`;
 
-CREATE TABLE `hr` (
+CREATE TABLE `interviewer` (
   `uid` int NOT NULL AUTO_INCREMENT,
   `uname` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -12,9 +12,9 @@ CREATE TABLE `hr` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS `worker`;
+DROP TABLE IF EXISTS `interviewee`;
 
-CREATE TABLE `worker` (
+CREATE TABLE `interviewee` (
   `id` int NOT NULL AUTO_INCREMENT,
   `workerID` varchar(12) NOT NULL,
   `password` varchar(255) NOT NULL,
