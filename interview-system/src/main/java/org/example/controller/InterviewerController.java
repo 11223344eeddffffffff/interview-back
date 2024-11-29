@@ -14,7 +14,7 @@ import java.util.Objects;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/hr")
+@RequestMapping("/interviewer")
 public class InterviewerController {
     public static final String SESSION_NAME = "userInfo";
 

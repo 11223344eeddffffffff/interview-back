@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/worker")
+@RequestMapping("/interviewee")
 public class IntervieweeController {
     private static final String WORKER_SESSION_NAME = "WorkerInfo";
 
@@ -52,7 +52,7 @@ public class IntervieweeController {
         return result;
     }
 
-    @PostMapping("/query/workerID")
+    @PostMapping("/query/intervieweeId")
     public Result<Interviewee> searchByIDController(@RequestParam String workerID){
         Interviewee interviewee = intervieweeService.findByIntervieweeIdService(workerID);
         if (interviewee == null){
