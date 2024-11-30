@@ -70,7 +70,7 @@ public class IntervieweeController {
         return Result.success(interviewees);
     }
 
-    @PostMapping("/showAll")
+    @GetMapping("/showAll")
     public Result<List<Interviewee>> modifyController(){
         List<Interviewee> interviewees = intervieweeService.findALlService();
         if (interviewees.isEmpty()){

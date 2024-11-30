@@ -13,7 +13,9 @@
 
  Date: 30/11/2024 00:30:14
 */
+CREATE DATABASE IF NOT EXISTS `interview_system` DEFAULT CHARACTER SET utf8;
 
+USE `interview_system`;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 

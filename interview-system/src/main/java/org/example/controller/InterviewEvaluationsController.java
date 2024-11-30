@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/evaluation")
 public class InterviewEvaluationsController {
     @Autowired
@@ -15,6 +16,7 @@ public class InterviewEvaluationsController {
 
     @PostMapping("/add")
     public Result<InterviewEvaluations> addInterviewEvaluations(@RequestBody InterviewEvaluations interviewEvaluations) {
+        interviewEvaluations.setResult("录用");
         return interviewEvaluationsService.save(interviewEvaluations) ? new Result("添加成功") : new Result("添加失败");
     }
 
@@ -29,9 +31,9 @@ public class InterviewEvaluationsController {
 
     @GetMapping("/search/{pageNo}/{interviewId}")
     public Result<IPage<InterviewEvaluations>> getById(@PathVariable int pageNo,@PathVariable String interviewId) {
-        IPage<InterviewEvaluations> page = interviewEvaluationsService.getAllRecord(pageNo,10,interviewId);
+        IPage<InterviewEvaluations> page = interviewEvaluationsService.selectById(pageNo,10,interviewId);
         if(pageNo > page.getPages()){
-            page = interviewEvaluationsService.getAllRecord((int)page.getPages(),10,interviewId);
+            page = interviewEvaluationsService.selectById((int)page.getPages(),10,interviewId);
         }
         return new Result<>(page);
     }

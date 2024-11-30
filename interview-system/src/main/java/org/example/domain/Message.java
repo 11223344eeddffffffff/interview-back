@@ -13,11 +13,11 @@ import java.util.Date;
 public class Message implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-
+    private String type;
     private String content;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date sendAt;
     private String senderName;
-
+    private String sdp;
+    private Candidate candidate;
 }
-

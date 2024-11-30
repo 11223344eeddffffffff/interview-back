@@ -18,9 +18,10 @@ public class InterviewEvaluations {
     private int professionalKnowledge;
     private int personalQuality;
     private String comments;
-    private String suggestions;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdAt;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updatedAt;
+    private String result;
+    private String position;
 }

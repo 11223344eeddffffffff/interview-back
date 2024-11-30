@@ -19,7 +19,7 @@ public class interviewEvaluationsServiceImpl extends ServiceImpl<InterviewEvalua
     @Override
     public IPage<InterviewEvaluations> getAllRecord(int pageNo, int pageSize, String condition) {
         LambdaQueryWrapper<InterviewEvaluations> lqw = new LambdaQueryWrapper<>();
-        lqw.eq(StrUtil.isNotEmpty(condition),InterviewEvaluations::getInterviewerId,condition);
+        lqw.eq(StrUtil.isNotEmpty(condition),InterviewEvaluations::getIntervieweeId,condition);
         IPage page = new Page<>(pageNo, pageSize);
         return interviewEvaluationsMapper.selectPage(page, lqw);
     }
