@@ -36,21 +36,21 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
         sessions.add(session);
         System.out.println("New WebSocket connection established: " + session.getId());
     }
-private void handleSignalingMessage(Message message) {
-    switch (message.getType()) {
-        case "offer":
-        case "answer":
-        case "candidate":
-            forwardMessageToOtherUsers(message);
-            break;
-        default:
-            System.out.println("Unknown signaling message type: " + message.getType());
+    private void handleSignalingMessage(Message message, WebSocketSession senderSession) {
+        switch (message.getType()) {
+            case "offer":
+            case "answer":
+            case "candidate":
+                forwardMessageToOtherUsers(message, senderSession);
+                break;
+            default:
+                System.out.println("Unknown signaling message type: " + message.getType());
+        }
     }
-}
-    private void forwardMessageToOtherUsers(Message message) {
+    private void forwardMessageToOtherUsers(Message message, WebSocketSession senderSession) {
         // 将信令消息转发给其他用户
         for (WebSocketSession session : sessions) {
-            if (session.isOpen()) {
+            if (session.isOpen() && !session.getId().equals(senderSession.getId())) {
                 try {
                     String messageJson = objectMapper.writeValueAsString(message);
                     TextMessage textMessage = new TextMessage(messageJson);
@@ -73,7 +73,7 @@ private void handleSignalingMessage(Message message) {
                 redisTemplate.convertAndSend(channelTopic.getTopic(), chatMessage);
             } else {
                 // 处理信令消息
-                handleSignalingMessage(chatMessage);
+                handleSignalingMessage(chatMessage, session);
             }
             // 发布到Redis
             redisTemplate.convertAndSend(channelTopic.getTopic(), chatMessage);
